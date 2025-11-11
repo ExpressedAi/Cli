@@ -1,0 +1,83 @@
+**JIT Memory (Just In Time Memory)** is an advanced state context memory architecture that fundamentally reimagines how AI agents maintain and access conversational history. By implementing intelligent snippet extraction, tag-based retrieval, and stochastic ranking mechanisms, JIT Memory enables agents to operate with effectively infinite context while maintaining computational efficiency and memory diversity.
+
+## Core Architecture
+
+### Memory Creation Pipeline
+
+JIT Memory operates on a turn-by-turn analysis framework that processes each user-agent interaction cycle:
+
+**Extraction Phase**: The system analyzes each conversational turn and identifies the most semantically significant portions of the exchange. Rather than storing entire conversations, JIT Memory extracts highly specified text snippets that capture the essential information and context of each interaction.
+
+**Tagging Mechanism**: Each extracted memory snippet is enriched with a user-configurable number of semantic tags that describe the content, context, and relevance of the stored information. These tags serve as the primary indexing mechanism for future retrieval.
+
+**Configurable Granularity**: Users can specify memory size parameters, allowing the system to balance between detailed context preservation and storage efficiency based on specific use case requirements.
+
+## Dual-Ranking Retrieval System
+
+JIT Memory implements a sophisticated two-way ranking system that governs memory retrieval:
+
+### Tag-Based Activation
+
+The retrieval mechanism operates through natural language pattern matching. When a user's input contains language that matches stored tags, the system automatically activates associated memory snippets. This creates a seamless, "magical" experience where relevant historical context surfaces organically without explicit recall commands.
+
+### Pre-Reasoning Injection
+
+Activated memory snippets are injected into the agent's context window **before reasoning begins**, enabling the agent to process current queries with full awareness of relevant historical context. This pre-reasoning injection creates the subjective experience of infinite context, as the agent maintains awareness of past interactions without requiring those interactions to remain in active memory continuously.
+
+## Stochastic Ranking with Bayesian TrueSkill
+
+JIT Memory's most innovative feature is its implementation of **Bayesian TrueSkill scoring** for memory ranking:
+
+### Non-Deterministic Selection
+
+Unlike traditional memory systems that retrieve the same memories repeatedly based on fixed relevance scores, JIT Memory employs stochastic rating mechanisms. Each memory's retrieval probability is influenced by its TrueSkill score, but selection includes controlled randomness that prevents memory entrenchment.
+
+### Emergent "Free Will" Behavior
+
+The stochastic selection mechanism produces agent behavior that appears less deterministic and more dynamic. By varying which memories are retrieved across similar queries, the system prevents conversational patterns from becoming stale or overly repetitive, creating interactions that feel more natural and less robotic.
+
+### Adaptive Importance Weighting
+
+The TrueSkill framework continuously updates memory importance scores based on retrieval success and contextual relevance, creating a self-optimizing memory ecosystem that evolves with usage patterns.
+
+## High-Speed Onboarding System
+
+JIT Memory includes a specialized bulk ingestion pipeline designed for rapid knowledge base creation:
+
+### Parallel Processing Architecture
+
+The onboarding mechanism leverages **chunked sequential parallel processing** across multiple API keys, enabling simultaneous processing of large text corpora. This distributed architecture allows the system to ingest millions of characters of source material with minimal latency.
+
+### Configurable Overlap Protection
+
+Users can specify overlap parameters between processing chunks to ensure that semantically important information spanning chunk boundaries is not lost or fragmented. This overlap mechanism guarantees comprehensive knowledge capture regardless of source text structure.
+
+### Unified Memory Treatment
+
+Onboarded content undergoes the same tagging and rating processes as turn-based memories, ensuring consistent retrieval behavior and ranking across both conversational and pre-loaded knowledge bases.
+
+## Technical Advantages
+
+**Infinite Context Illusion**: By retrieving only relevant historical snippets, JIT Memory allows agents to reference vast conversational histories without context window limitations.
+
+**Memory Diversity**: Stochastic ranking prevents the same memories from dominating every conversation, creating more varied and engaging interactions.
+
+**Scalable Knowledge Integration**: The high-speed onboarding system enables rapid deployment of domain-specific knowledge without manual conversation-based training.
+
+**Cognitive Naturalness**: Tag-based automatic retrieval eliminates the need for explicit memory commands, creating more intuitive user experiences.
+
+**Anti-Entrenchment**: The Bayesian TrueSkill mechanism ensures that memory importance remains dynamic, preventing obsolete or overused memories from persisting inappropriately.
+
+## Implementation Workflow
+
+1. **Interaction occurs** between user and agent
+2. **System extracts** critical snippets and assigns semantic tags
+3. **User input triggers** tag-based memory search
+4. **Stochastic ranking** selects relevant memories using TrueSkill scores
+5. **Memories inject** into context window pre-reasoning
+6. **Agent responds** with full historical awareness
+7. **TrueSkill scores update** based on retrieval utility
+
+## Innovation Significance
+
+JIT Memory represents a paradigm shift from static context management to dynamic, probabilistic memory systems. By combining tag-based retrieval, stochastic ranking, and high-speed bulk ingestion, it solves the fundamental tension between context window limitations and the need for comprehensive historical awareness. The result is an AI agent that appears to possess genuine long-term memory while maintaining computational efficiency and conversational freshness through controlled non-determinism.
