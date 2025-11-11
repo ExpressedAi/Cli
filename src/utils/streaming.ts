@@ -27,6 +27,7 @@ export class StreamHandler {
     options: {
       verbose?: boolean;
       onAssistant?: (message: SDKAssistantMessage) => void;
+      onAssistantMessage?: (content: string) => void;
       onResult?: (message: SDKResultMessage) => void;
       onSystem?: (message: SDKSystemMessage) => void;
     } = {}
@@ -43,6 +44,7 @@ export class StreamHandler {
     options: {
       verbose?: boolean;
       onAssistant?: (message: SDKAssistantMessage) => void;
+      onAssistantMessage?: (content: string) => void;
       onResult?: (message: SDKResultMessage) => void;
       onSystem?: (message: SDKSystemMessage) => void;
     }
@@ -79,10 +81,19 @@ export class StreamHandler {
 
   private handleAssistantMessage(
     message: SDKAssistantMessage,
-    options: { onAssistant?: (message: SDKAssistantMessage) => void }
+    options: {
+      onAssistant?: (message: SDKAssistantMessage) => void;
+      onAssistantMessage?: (content: string) => void;
+    }
   ): void {
     if (this.currentText) {
       console.log(); // New line after streaming
+
+      // Call the text callback with accumulated text
+      if (options.onAssistantMessage) {
+        options.onAssistantMessage(this.currentText);
+      }
+
       this.currentText = "";
     }
 

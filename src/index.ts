@@ -10,12 +10,14 @@ import { StreamHandler, formatStats } from "./utils/streaming.js";
 import { PermissionManager } from "./utils/permissions.js";
 import { getAgentDefinitions } from "./agents/index.js";
 import { defaultHooks } from "./hooks/index.js";
+import { startInteractiveChat } from "./chat.js";
 
 // Import MCP servers
 import { filesystemServer } from "./servers/filesystem.js";
 import { gitServer } from "./servers/git.js";
 import { codeAnalysisServer } from "./servers/codeAnalysis.js";
 import { devWorkflowServer } from "./servers/devWorkflow.js";
+import { quantumServer } from "./servers/quantum.js";
 
 async function main() {
   try {
@@ -26,11 +28,17 @@ async function main() {
     // Validate configuration
     cli.validateConfig();
 
-    // Show banner
-    cli.showBanner();
+    // Check if we should use interactive mode
+    const prompt = (config as any).prompt;
 
-    // Get prompt from config
-    const prompt = (config as any).prompt || "Hello! How can I help you today?";
+    // If no prompt provided, start interactive chat
+    if (!prompt || prompt === cli["getDefaultPrompt"](config.mode)) {
+      await startInteractiveChat(config);
+      return;
+    }
+
+    // Otherwise, show banner for one-shot mode
+    cli.showBanner();
 
     // Setup permission manager based on mode
     let permissionMode = config.permissionMode || "default";
@@ -79,8 +87,9 @@ async function main() {
         forkSession: config.fork,
         maxTurns: config.maxTurns,
 
-        // MCP Servers - all our custom servers
+        // MCP Servers - all our custom servers including quantum!
         mcpServers: {
+          quantum: quantumServer,
           filesystem: filesystemServer,
           git: gitServer,
           "code-analysis": codeAnalysisServer,
