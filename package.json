@@ -1,19 +1,46 @@
 {
-  "name": "cli",
+  "name": "devmaster-cli",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "agent": "ts-node src/index.ts",
-    "dev": "npm run agent --"
+  "description": "AAA-grade development assistant powered by Claude Agent SDK with advanced MCP servers and specialized agents",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "devmaster": "./dist/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "chat": "tsx src/index.ts --mode chat",
+    "analyze": "tsx src/index.ts --mode analyze",
+    "review": "tsx src/index.ts --mode review",
+    "refactor": "tsx src/index.ts --mode refactor",
+    "plan": "tsx src/index.ts --mode plan",
+    "test": "tsx src/index.ts --mode test",
+    "debug": "tsx src/index.ts --mode debug"
+  },
+  "keywords": [
+    "cli",
+    "ai",
+    "claude",
+    "development",
+    "assistant",
+    "code-analysis",
+    "mcp",
+    "agent-sdk"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.1.37",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "zod": "^4.1.12"
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
