@@ -148,4 +148,88 @@ export class UI {
   static color(text: string, color: keyof typeof colors): string {
     return `${colors[color]}${text}${colors.reset}`;
   }
+
+  // Quantum visualizations
+  static quantumBanner(): void {
+    const banner = `
+${colors.magenta}╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║  ${colors.bright}${colors.cyan}⚛️  QUANTUM COGNITIVE OS${colors.reset}${colors.magenta}  ${colors.dim}v1.0.0${colors.reset}${colors.magenta}                      ║
+║  ${colors.dim}100D Memory • Phase-Locking • Neuron Network${colors.reset}${colors.magenta}            ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝${colors.reset}
+`;
+    console.log(banner);
+  }
+
+  static quantumMode(modeName: string, emoji: string, description: string): void {
+    console.log();
+    console.log(`${emoji}  ${colors.bright}${colors.cyan}${modeName}${colors.reset}`);
+    console.log(`${colors.dim}${description}${colors.reset}`);
+    this.divider();
+  }
+
+  static bar(value: number, maxValue: number = 1, width: number = 30): string {
+    const filled = Math.round((value / maxValue) * width);
+    const empty = width - filled;
+    const fillChar = '█';
+    const emptyChar = '░';
+
+    let color: keyof typeof colors = 'green';
+    if (value / maxValue < 0.5) color = 'red';
+    else if (value / maxValue < 0.75) color = 'yellow';
+
+    return `${colors[color]}${fillChar.repeat(filled)}${colors.gray}${emptyChar.repeat(empty)}${colors.reset}`;
+  }
+
+  static sparkline(values: number[]): string {
+    if (values.length === 0) return '';
+
+    const chars = ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'];
+    const max = Math.max(...values);
+    const min = Math.min(...values);
+    const range = max - min || 1;
+
+    return values
+      .map(v => {
+        const normalized = (v - min) / range;
+        const index = Math.min(Math.floor(normalized * chars.length), chars.length - 1);
+        return chars[index];
+      })
+      .join('');
+  }
+
+  static neuronActivation(neurons: string[]): void {
+    console.log(`\n${colors.bright}🧠 Neurons Activated:${colors.reset}`);
+    neurons.forEach(neuron => {
+      console.log(`  ${colors.cyan}•${colors.reset} ${neuron}`);
+    });
+  }
+
+  static dimensionCloud(dimensions: Record<string, number>): void {
+    console.log(`\n${colors.bright}📊 Dimension Activation Cloud:${colors.reset}\n`);
+
+    const sorted = Object.entries(dimensions)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+
+    const maxValue = sorted[0]?.[1] || 1;
+
+    sorted.forEach(([dim, value]) => {
+      const bar = this.bar(value, maxValue, 20);
+      const percentage = (value * 100).toFixed(0);
+      console.log(`  ${dim.padEnd(20)} ${bar} ${colors.dim}${percentage}%${colors.reset}`);
+    });
+  }
+
+  static wormholePath(path: string[]): void {
+    console.log(`\n${colors.bright}🌀 Wormhole Path:${colors.reset}\n`);
+
+    for (let i = 0; i < path.length; i++) {
+      const isLast = i === path.length - 1;
+      const connector = isLast ? '' : `  ${colors.magenta}↓${colors.reset}\n`;
+      console.log(`  ${colors.cyan}${i + 1}.${colors.reset} ${path[i]}`);
+      if (!isLast) console.log(connector);
+    }
+  }
 }
