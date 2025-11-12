@@ -52,10 +52,18 @@ Welcome to the Quantum Cognitive Operating System! Here are all available comman
 
 ## 📚 Learning & Memory
 
+- **/memories** - View and explore persistent memories
+- **/research** - Quantum web research with memory storage
 - **/learn** - Record patterns in COPL learner
 - **/recall** - Query Superarray memory
 - **/patterns** - Show learned COPL patterns
 - **/stats** - Quantum system statistics
+
+## 🌐 Web & Research
+
+- **/search** - Web search for current information
+- **/fetch** - Fetch full content from URLs
+- **/research** - Comprehensive quantum research
 
 ## ⚙️ Configuration
 
